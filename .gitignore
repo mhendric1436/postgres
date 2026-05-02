@@ -5,3 +5,5 @@ logs/*
 backups/*
 !backups/.gitkeep
 .env
+migrations/*
+!migrations/.gitkeep
