@@ -85,6 +85,10 @@ createdb: ## Create PG_DB (make createdb PG_DB=mydb)
 dropdb: ## Drop PG_DB (make dropdb PG_DB=mydb)
 	$(PG_BIN)/dropdb -p $(PG_PORT) -U $(PG_USER) --if-exists "$(PG_DB)"
 
+.PHONY: databases
+databases: ## List all databases in the cluster
+	$(PSQL) -d postgres -c "\l+"
+
 .PHONY: createuser
 createuser: ## Create a role (make createuser ROLE=app ROLEPASS=secret)
 	@[ -n "$(ROLE)" ] || { echo "Usage: make createuser ROLE=<name> [ROLEPASS=<pw>]"; exit 1; }
